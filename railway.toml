@@ -5,4 +5,4 @@
   NODE_ENV = "production"
 
 [run]
-  command = "npm start"
+  command = "npm run migrate && nest start"

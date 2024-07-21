@@ -7,7 +7,7 @@ export class FilterService {
   constructor(private prisma: PrismaService) {}
 
   async filterPosts(filterDto: FilterDto) {
-    const { page, limit, search, description } = filterDto;
+    const { page, limit, search, description, sort, order } = filterDto;
     const offset = (page - 1) * limit;
 
     const whereConditions = {};
@@ -23,8 +23,14 @@ export class FilterService {
       };
     }
 
+    const orderByConditions = {};
+    if (sort && order) {
+      orderByConditions[sort] = order;
+    }
+
     const posts = await this.prisma.post.findMany({
       where: whereConditions,
+      orderBy: orderByConditions,
       skip: offset,
       take: limit,
     });
@@ -47,6 +53,7 @@ export class FilterService {
     if (sort && order) {
       orderByConditions[sort] = order;
     }
+
     const users = await this.prisma.user.findMany({
       where: whereConditions,
       orderBy: orderByConditions,
