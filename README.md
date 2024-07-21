@@ -8,74 +8,70 @@
 
 ## Установка
 
-1. **Клонируйте репозиторий:**
+**Клонируйте репозиторий:**
 
-  git clone https://github.com/KirillSezen/test_task.git
-  cd test_task
-
-
-Установите зависимости:
-
-npm install
-# или
-yarn install
+ - git clone https://github.com/KirillSezen/test_task.git
+ - cd test_task
 
 
-Настройте переменные окружения:
+# Установите зависимости:
 
-Создайте файл .env в корне проекта и добавьте следующие переменные:
+ - npm install
 
-DATABASE_URL="postgresql://user:password@localhost:5432/yourdatabase"
-JWT_SECRET="your-secret-key"
+
+# Настройте переменные окружения:
+
+**Создайте файл .env в корне проекта и добавьте следующие переменные как в env.example:**
+
+ - DATABASE_URL="postgresql://user:password@localhost:5432/yourdatabase"
+ - JWT_SECRET="your-secret-key"
+
 Замените user, password, localhost, 5432 и yourdatabase на соответствующие значения для вашей базы данных.
 
 
-Настройка Prisma:
-Примените миграции Prisma для создания таблиц в базе данных:
+# Настройка Prisma:
+**Примените миграции Prisma для создания таблиц в базе данных:**
 
-npx prisma migrate dev --name init
+ - npx prisma migrate dev --name init
 
 
-Запустите приложение:
+# Запустите приложение:
 
-npm run start
-# или
-yarn start
-
+ - npm run start
 
 Приложение будет доступно по адресу http://localhost:3000.
 
-Структура проекта:
 
-src/ - исходный код приложения.
+# Структура проекта:
 
-auth/ - модуль аутентификации.
+ - src/ - исходный код приложения.
 
-posts/ - модуль постов.
+ - auth/ - модуль аутентификации.
 
-users/ - модуль пользователей.
+ - posts/ - модуль постов.
 
-prisma/ - конфигурация Prisma.
+ - users/ - модуль пользователей.
 
-app.module.ts - корневой модуль приложения.
+ - prisma/ - конфигурация Prisma.
 
-main.ts - точка входа приложения.
+ - app.module.ts - корневой модуль приложения.
+
+ - main.ts - точка входа приложения.
 
 
-Документация API
-Документация API доступна после запуска приложения по адресу http://localhost:3000/api.
+# Документация API
+ - Документация API доступна после запуска приложения по адресу http://localhost:3000/api.
 
-Тестирование
-Для запуска тестов используйте следующую команду:
+# Тестирование
+**Для запуска тестов используйте следующую команду:**
 
-npm run test:e2e
-# или
-yarn test
+ - npm run test:e2e
 
-Ссылки на деплой:
-railway домен:
+# Ссылка на деплой:
+**railway домен:**
 
-swagger doc - https://testtask-production-0487.up.railway.app/api
+ - swagger doc - https://testtask-production-0487.up.railway.app/api
+
 
 
 <p align="center">
