@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { FilterDto } from 'src/users/dto/filter.dto';
+import { FilterDto } from '../users/dto/filter.dto';
 
 @Injectable()
 export class FilterService {
@@ -8,7 +8,7 @@ export class FilterService {
 
   async filterPosts(filterDto: FilterDto) {
     const { page, limit, search, description, sort, order } = filterDto;
-    const offset = (page - 1) * limit;
+    const offset = (page - 1) * limit || 0;
 
     const whereConditions = {};
     if (search) {
@@ -40,7 +40,7 @@ export class FilterService {
 
   async filterUsers(filterDto: FilterDto) {
     const { page, limit, search, sort, order } = filterDto;
-    const offset = (page - 1) * limit;
+    const offset = (page - 1) * limit || 0;
 
     const whereConditions = {};
     if (search) {

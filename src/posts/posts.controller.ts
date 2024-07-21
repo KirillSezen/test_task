@@ -19,10 +19,11 @@ import {
   ApiOperation,
 } from '@nestjs/swagger';
 import { PostEntity } from './entities/post.entity';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { UserGuard } from 'src/auth/user.guard';
-import { UserOrAdminGuard } from 'src/auth/user-or-admin.guard';
-import { FilterDto } from 'src/users/dto/filter.dto';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { UserGuard } from '../auth/user.guard';
+import { UserOrAdminGuard } from '../auth/user-or-admin.guard';
+import { FilterDto } from '../users/dto/filter.dto';
+import { User } from '../auth/user.decorator';
 
 @Controller('posts')
 @ApiTags('posts')
@@ -33,8 +34,9 @@ export class PostsController {
   @ApiCreatedResponse({ type: PostEntity })
   @UseGuards(JwtAuthGuard)
   @Post()
-  create(@Body() createPostDto: CreatePostDto) {
-    return this.postsService.create(createPostDto);
+  create(@User() user, @Body() createPostDto: CreatePostDto) {
+    const userId = user.id;
+    return this.postsService.create(createPostDto, userId);
   }
 
   @ApiOperation({ summary: 'Get all posts' })

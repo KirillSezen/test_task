@@ -1,3 +1,83 @@
+Это пример NestJS приложения, использующего Prisma для работы с базой данных PostgreSQL.
+
+## Требования
+
+- Node.js (рекомендуемая версия: 14.x или выше)
+- npm или yarn
+- PostgreSQL (рекомендуемая версия: 12.x или выше)
+
+## Установка
+
+1. **Клонируйте репозиторий:**
+
+  git clone https://github.com/KirillSezen/test_task.git
+  cd test_task
+
+
+Установите зависимости:
+
+npm install
+# или
+yarn install
+
+
+Настройте переменные окружения:
+
+Создайте файл .env в корне проекта и добавьте следующие переменные:
+
+DATABASE_URL="postgresql://user:password@localhost:5432/yourdatabase"
+JWT_SECRET="your-secret-key"
+Замените user, password, localhost, 5432 и yourdatabase на соответствующие значения для вашей базы данных.
+
+
+Настройка Prisma:
+Примените миграции Prisma для создания таблиц в базе данных:
+
+npx prisma migrate dev --name init
+
+
+Запустите приложение:
+
+npm run start
+# или
+yarn start
+
+
+Приложение будет доступно по адресу http://localhost:3000.
+
+Структура проекта:
+
+src/ - исходный код приложения.
+
+auth/ - модуль аутентификации.
+
+posts/ - модуль постов.
+
+users/ - модуль пользователей.
+
+prisma/ - конфигурация Prisma.
+
+app.module.ts - корневой модуль приложения.
+
+main.ts - точка входа приложения.
+
+
+Документация API
+Документация API доступна после запуска приложения по адресу http://localhost:3000/api.
+
+Тестирование
+Для запуска тестов используйте следующую команду:
+
+npm run test:e2e
+# или
+yarn test
+
+Ссылки на деплой:
+railway домен:
+
+swagger doc - https://testtask-production-0487.up.railway.app/api
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>

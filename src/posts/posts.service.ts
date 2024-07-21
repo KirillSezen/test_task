@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { FilterDto } from 'src/users/dto/filter.dto';
+import { PrismaService } from '../prisma/prisma.service';
+import { FilterDto } from '../users/dto/filter.dto';
 import { FilterService } from './filter.service';
 
 @Injectable()
@@ -12,8 +12,10 @@ export class PostsService {
     private filterService: FilterService,
   ) {}
 
-  async create(createPostDto: CreatePostDto) {
-    const result = await this.prisma.post.create({ data: createPostDto });
+  async create(createPostDto: CreatePostDto, userId: number) {
+    const result = await this.prisma.post.create({
+      data: { ...createPostDto, userId },
+    });
     return result;
   }
 

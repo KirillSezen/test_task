@@ -12,10 +12,10 @@ import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserEntity } from './entities/user.entity';
 import { ApiTags, ApiOkResponse, ApiOperation } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { RolesGuard } from 'src/auth/roles.guard';
-import { Roles } from 'src/auth/roles.decorator';
-import { UserOrAdminGuard } from 'src/auth/user-or-admin.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { RolesGuard } from '../auth/roles.guard';
+import { Roles } from '../auth/roles.decorator';
+import { UserOrAdminGuard } from '../auth/user-or-admin.guard';
 import { FilterDto } from './dto/filter.dto';
 
 @Controller('users')

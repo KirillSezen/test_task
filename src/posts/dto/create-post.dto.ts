@@ -1,11 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsString,
-  IsNumber,
-  MinLength,
-  MaxLength,
-  IsNotEmpty,
-} from 'class-validator';
+import { IsString, MinLength, MaxLength, IsNotEmpty } from 'class-validator';
 
 export class CreatePostDto {
   @ApiProperty({
@@ -31,12 +25,4 @@ export class CreatePostDto {
   @IsString({ message: 'Must be a string' })
   @IsNotEmpty({ message: 'Is Required' })
   content: string;
-
-  @ApiProperty({
-    description: 'The ID of the user who created the post',
-    example: 1,
-  })
-  @IsNumber({}, { message: 'Must be a number' })
-  @IsNotEmpty({ message: 'Is Required' })
-  userId: number;
 }
