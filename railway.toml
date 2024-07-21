@@ -1,0 +1,8 @@
+[build]
+  builder = "nodejs"
+
+[env]
+  NODE_ENV = "production"
+
+[run]
+  command = "npm start"
