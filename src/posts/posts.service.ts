@@ -28,7 +28,7 @@ export class PostsService {
     const post = await this.prisma.post.findUnique({ where: { id } });
     if (!post) {
       throw new HttpException(
-        'Post with such id doent exist',
+        'Post with such id doesnt exist',
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -39,7 +39,7 @@ export class PostsService {
     const post = await this.prisma.post.findUnique({ where: { id } });
     if (!post) {
       throw new HttpException(
-        'Post with such id doent exist',
+        'Post with such id doesnt exist',
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -55,7 +55,7 @@ export class PostsService {
     const post = await this.prisma.post.findUnique({ where: { id } });
     if (!post) {
       throw new HttpException(
-        'Post with such id doent exist',
+        'Post with such id doesnt exist',
         HttpStatus.BAD_REQUEST,
       );
     }

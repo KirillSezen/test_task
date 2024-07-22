@@ -21,7 +21,7 @@ export class UsersService {
     const user = await this.prisma.user.findUnique({ where: { id } });
     if (!user) {
       throw new HttpException(
-        'User with such id doent exist',
+        'User with such id doesnt exist',
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -32,7 +32,7 @@ export class UsersService {
     const user = await this.prisma.user.findUnique({ where: { id } });
     if (!user) {
       throw new HttpException(
-        'User with such id doent exist',
+        'User with such id doesnt exist',
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -48,7 +48,7 @@ export class UsersService {
     const user = await this.prisma.user.findUnique({ where: { id } });
     if (!user) {
       throw new HttpException(
-        'User with such id doent exist',
+        'User with such id doesnt exist',
         HttpStatus.BAD_REQUEST,
       );
     }
