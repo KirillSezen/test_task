@@ -19,11 +19,11 @@ import {
   ApiOperation,
 } from '@nestjs/swagger';
 import { PostEntity } from './entities/post.entity';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { UserGuard } from '../auth/guards/user.guard';
-import { UserOrAdminGuard } from '../auth/guards/user-or-admin.guard';
+import { JwtAuthGuard } from '../guards/jwt-auth.guard';
+import { UserGuard } from '../guards/user.guard';
+import { UserOrAdminGuard } from '../guards/user-or-admin.guard';
 import { FilterDto } from '../users/dto/filter.dto';
-import { User } from '../auth/decorators/user.decorator';
+import { User } from '../decorators/user.decorator';
 
 @Controller('posts')
 @ApiTags('posts')

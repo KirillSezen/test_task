@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
 import { INestApplication } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -14,6 +15,8 @@ describe('AppController (e2e)', () => {
 
     app = moduleFixture.createNestApplication();
     await app.init();
+
+    await clearDatabase(app); // очищаем посты и  пользователей с бд для чистоты данных
   });
 
   afterAll(async () => {
@@ -25,17 +28,17 @@ describe('AppController (e2e)', () => {
       return request(app.getHttpServer())
         .post('/auth/register')
         .send({
-          email: 'anotheruser@mail.ru',
-          password: 'testpasswsssord22@',
+          email: 'epicemail@mail.ru',
+          password: '123Qwer@www@',
           role: 'ADMIN',
         })
-        .expect(400);
+        .expect(201);
     });
 
     it('should login and return a JWT', () => {
       return request(app.getHttpServer())
         .post('/auth/login')
-        .send({ email: 'tohach22@mail.ru', password: 'QwerT123@33' })
+        .send({ email: 'epicemail@mail.ru', password: '123Qwer@www' })
         .expect(201)
         .then((response) => {
           expect(response.body).toHaveProperty('token');
@@ -61,18 +64,18 @@ describe('AppController (e2e)', () => {
 
     it('should update a user profile', () => {
       return request(app.getHttpServer())
-        .patch('/users/3')
+        .patch('/users/1')
         .set('Authorization', `Bearer ${authToken}`)
         .send({ email: 'updatedusera@mail.ru' })
         .expect(200);
     });
 
-    // it('should delete a user', () => {
-    //    return request(app.getHttpServer())
-    //     .delete('/users/1')
-    //     .set('Authorization', `Bearer ${authToken}`)
-    //     .expect(200);
-    // });
+    it('should delete a user', () => {
+      return request(app.getHttpServer())
+        .delete('/users/1')
+        .set('Authorization', `Bearer ${authToken}`)
+        .expect(200);
+    });
   });
 
   describe('Posts', () => {
@@ -114,3 +117,9 @@ describe('AppController (e2e)', () => {
     });
   });
 });
+
+async function clearDatabase(app: INestApplication) {
+  const prismaService = app.get(PrismaService);
+  await prismaService.user.deleteMany();
+  await prismaService.post.deleteMany();
+}
